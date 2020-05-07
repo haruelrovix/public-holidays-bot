@@ -1,0 +1,12 @@
+{
+  "name": "adakerja-public-holidays-bot",
+  "version": "1.0.0",
+  "description": "To notify public holidays in AdaKerja workspace",
+  "main": "index.js",
+  "author": "haruelrovix <havit@adakerja.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "googleapis": "^50.0.0"
+  }
+}
