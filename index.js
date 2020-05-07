@@ -1,4 +1,5 @@
 const { google } = require('googleapis')
+const { startOfWeek, endOfWeek } = require('date-fns/fp')
 
 const getHolidays = async country => {
   try {
@@ -9,8 +10,8 @@ const getHolidays = async country => {
 
     const params = {
       calendarId: `en.${country}#holiday@group.v.calendar.google.com`,
-      timeMin: '2020-05-01T00:00:00.000Z',
-      timeMax: '2020-05-30T00:00:00.000Z'
+      timeMin: startOfWeek(new Date()),
+      timeMax: endOfWeek(new Date())
     }
 
     const { data } = await calendar.events.list(params)
