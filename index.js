@@ -1,6 +1,6 @@
 const { google } = require('googleapis')
 
-const a = async () => {
+const getHolidays = async country => {
   try {
     const calendar = google.calendar({
       version: 'v3',
@@ -8,13 +8,13 @@ const a = async () => {
     })
 
     const params = {
-      calendarId: 'en.indonesian#holiday@group.v.calendar.google.com',
+      calendarId: `en.${country}#holiday@group.v.calendar.google.com`,
       timeMin: '2020-05-01T00:00:00.000Z',
       timeMax: '2020-05-30T00:00:00.000Z'
     }
 
     const { data } = await calendar.events.list(params)
-    console.info(data.summary)
+    console.info(`\n${data.summary}`)
     data.items.forEach(item => {
       console.info(`${item.summary} (${item.start.date})`)
     });
@@ -23,4 +23,7 @@ const a = async () => {
   }
 }
 
-a()
+const countries = ['indonesian', 'singapore', 'indian', 'ir', 'turkish']
+for (const country of countries) {
+  getHolidays(country)
+}
